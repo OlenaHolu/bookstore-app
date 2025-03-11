@@ -80,14 +80,8 @@ final class BookController extends AbstractController
         $this->bookRepository->addBook($book);
 
         if (isset($data['images']) && is_array($data['images'])) {
-            foreach ($data['images'] as $imageData) {
-                $image = new Image();
-                $image->setUrl($imageData);
-                $image->setBook($book);
-                $this->entityManager->persist($image);
-            }
+            $this->imageRepository->createAndPersistImages($data['images'], $book);
         }
-
         $this->entityManager->flush();
         
         return $this->json(['message' => 'Book added successfully'], Response::HTTP_CREATED);
