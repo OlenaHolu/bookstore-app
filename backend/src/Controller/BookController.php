@@ -95,7 +95,7 @@ final class BookController extends AbstractController
     #[Route('/ws/books', name: 'books', methods: ['GET'])]
     public function getAllBooks(): JsonResponse
     {
-        $books = $this->bookRepository->findAll();
+        $books = $this->bookRepository->findAllOrderedByDate();
         $data = $this->bookRepository->serializeBooks($books);
 
         return $this->json($data);

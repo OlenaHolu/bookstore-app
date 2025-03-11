@@ -127,4 +127,12 @@ class BookRepository extends ServiceEntityRepository
             'images' => $images,
         ];
     }
+
+    public function findAllOrderedByDate(): array
+    {
+        return $this->createQueryBuilder('b')
+            ->orderBy('b.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }
