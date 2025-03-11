@@ -10,8 +10,7 @@ const BookList = () => {
 
     useEffect(() => {
         loadBooks();
-    }
-    , []);
+    }, []);
 
     const loadBooks = () => {
         getAllBooks().then((response) => setBooks(response.data));
@@ -22,12 +21,13 @@ const BookList = () => {
     };
 
     return (
-        <div>
-            <h2>Lista de Libros</h2>
-            <ul>
+        <div className="bg-white p-2 shadow-md rounded-lg">
+            <ul className="space-y-2">
                 {books.map(book => (
-                    <li key={book.isbn}>
-                        <Link to={`/book/${book.isbn}`}>{book.title}</Link>
+                    <li key={book.isbn} className="flex items-center justify-between p-1 bg-gray-100 rounded-md shadow-sm">
+                        <Link to={`/book/${book.isbn}`} className="text-lg font-medium text-indigo-600 hover:underline">
+                            {book.title}
+                        </Link>
                         <Button 
                             text="Eliminar" 
                             color="red" 

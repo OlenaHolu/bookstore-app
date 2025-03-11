@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import Home from './pages/Home';
 import BookPage from './pages/BookPage';
 import { Routes, Route } from 'react-router-dom';

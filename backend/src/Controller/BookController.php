@@ -1,8 +1,11 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Book;
+use App\Entity\Image;
 use App\Repository\BookRepository;
 use App\Repository\ImageRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,11 +16,13 @@ final class BookController extends AbstractController
 {
     private BookRepository $bookRepository;
     private ImageRepository $imageRepository;
+    private $entityManager;
 
-    public function __construct(BookRepository $bookRepository, ImageRepository $imageRepository)
+    public function __construct(BookRepository $bookRepository, ImageRepository $imageRepository, EntityManagerInterface $entityManager)
     {
         $this->bookRepository = $bookRepository;
         $this->imageRepository = $imageRepository;
+        $this->entityManager = $entityManager;
     }
 
     #[Route('/book', name: 'app_book')]
@@ -75,16 +80,16 @@ final class BookController extends AbstractController
         $this->bookRepository->addBook($book);
 
         if (isset($data['images']) && is_array($data['images'])) {
-            $images = [];
             foreach ($data['images'] as $imageData) {
-                if (!$this->imageRepository->isValidImageData($imageData)) {
-                    return $this->json(['error' => 'Invalid image data'], Response::HTTP_BAD_REQUEST);
-                }
-                $image = $this->imageRepository->createImageFromData($imageData);
-                $images[] = $image;
+                $image = new Image();
+                $image->setUrl($imageData);
+                $image->setBook($book);
+                $this->entityManager->persist($image);
             }
-            $this->imageRepository->addImages($images);
         }
+
+        $this->entityManager->flush();
+        
         return $this->json(['message' => 'Book added successfully'], Response::HTTP_CREATED);
     }
 
