@@ -1,12 +1,6 @@
 import axios from "axios";
 
 const WS_URL = "http://127.0.0.1:8000/ws";
-/*
-export const getAllBooks = async () => {
-    const response = await fetch(`${WS_URL}/books`);
-    return await response.json();
-};
-*/
 
 export const getAllBooks = () => axios.get(`${WS_URL}/books`);
 export const getBooksPublishedBefore = (year) => axios.get(`${WS_URL}/books/published-before/${year}`);
