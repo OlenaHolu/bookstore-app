@@ -73,6 +73,10 @@ class Book
 
     public function setIsbn(string $isbn): static
     {
+        if (!preg_match('/^\d{13}$/', $isbn)) {
+            throw new \InvalidArgumentException('Invalid ISBN. It must be a 13-digit number.');
+        }
+
         $this->isbn = $isbn;
 
         return $this;

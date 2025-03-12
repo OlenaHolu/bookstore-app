@@ -14,8 +14,8 @@ const Home = () => {
             </header>
             <main className="flex-grow container mx-auto p-4">
                 <div className="flex flex-col md:flex-row gap-6">
-                    <div className="md:w-1/4 bg-white p-4 shadow-md rounded-lg">
-                        <h2 className="text-2xl font-bold mb-4">Agregar Libro</h2>
+                    <div className="md:w-1/4 bg-gray-100 p-4 shadow-md rounded-lg border border-gray-300">
+                        <h2 className="text-2xl font-bold mb-4">Añadir Libro</h2>
                         <AddBookForm onBookAdded={() => setRefresh(!refresh)} />
                     </div>
                     <div className="md:w-3/4 bg-white p-4 shadow-md rounded-lg">

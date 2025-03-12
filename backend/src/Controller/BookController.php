@@ -51,8 +51,9 @@ final class BookController extends AbstractController
         try {
             $books = [];
             foreach ($data['books'] as $bookData) {
-                if (!$this->bookRepository->isValidBookData($bookData)) {
-                    return $this->json(['error' => 'Invalid book data'], Response::HTTP_BAD_REQUEST);
+                $validationError = $this->bookRepository->validateBookData($bookData);
+                if ($validationError) {
+                    return $this->json(['error' => $validationError], Response::HTTP_BAD_REQUEST);
                 }
                 $book = $this->bookRepository->createBookFromData($bookData);
                 $books[] = $book;
@@ -72,8 +73,9 @@ final class BookController extends AbstractController
             return $this->json(['error' => 'Error reading json'], Response::HTTP_BAD_REQUEST);
         }
 
-        if (!($this->bookRepository->isValidBookData($data))) {
-            return $this->json(['error' => 'Missing required fields'], Response::HTTP_BAD_REQUEST);
+        $validationError = $this->bookRepository->validateBookData($data);
+        if ($validationError) {
+            return $this->json(['error' => $validationError], Response::HTTP_BAD_REQUEST);
         }
 
         $book = $this->bookRepository->createBookFromData($data);

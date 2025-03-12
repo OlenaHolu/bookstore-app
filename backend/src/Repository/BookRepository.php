@@ -135,4 +135,21 @@ class BookRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function validateBookData(array $bookData): ?string
+    {
+        $existingBook = $this->findOneBy(['isbn' => $bookData['isbn']]);
+        if ($existingBook) {
+            return "ISBN: {$bookData['isbn']} already exists";
+        }
+
+        $requiredFields = ['isbn', 'title', 'author', 'published', 'publisher', 'pages', 'description', 'category'];
+        foreach ($requiredFields as $field) {
+            if (!isset($bookData[$field])) {
+                return "Missing required field: $field";
+            }
+        }
+
+        return null; // without errors
+    }
 }
