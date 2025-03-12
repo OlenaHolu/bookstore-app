@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { getAllBooks, deleteBook, getBooksPublishedBefore, getBooksByCategory, getBookByIsbn } from "../api";
-import { Link } from "react-router-dom";
 import Button from "./Button";
 import BookItem from "./BookItem";
 
@@ -82,7 +81,11 @@ const BookList = () => {
             <div className="mb-4">
                 <select
                     value={searchType}
-                    onChange={(e) => setSearchType(e.target.value)}
+                    onChange={(e) => {
+                        setSearchType(e.target.value);
+                        setSearchValue("");
+                        clearFilter();
+                    }} 
                     className="border p-2 rounded"
                 >
                     <option value="year">Buscar antes del Año</option>

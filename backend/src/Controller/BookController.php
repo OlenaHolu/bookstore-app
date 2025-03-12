@@ -130,7 +130,8 @@ final class BookController extends AbstractController
             return $this->json(['error' => 'Book not found'], JsonResponse::HTTP_NOT_FOUND);
         }
 
-        $data = $this->bookRepository->serializeBook($book);
+        $data = [];
+        $data[] = $this->bookRepository->serializeBook($book);
 
         return $this->json($data);
     }
