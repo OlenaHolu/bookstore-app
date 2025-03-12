@@ -1,18 +1,53 @@
-Las tecnologías usadas son PHP, Symfony y MySQL en la parte de backend, y ReactJS en la parte de frontend. 
-Backend:
-1.Preparar un importador para leer el fichero “books.json” y almacenar su información en una estructura de base de datos.
-2. Cada uno de los libros podrá tener asignadas de 0 a X imágenes.
-3. Preparar una serie de webservices REST que devuelvan la siguiente información en formato JSON:
-○ Todos los libros.
-○ Todos los libros publicados antes del año X.
-○ Todos los libros de la categoría X.
-○ La información de un libro concreto, pasando como parámetro un ISBN, y que devolverá también las imágenes del libro.
-4. Preparar dos servicios web que permitan:
-○ Añadir un libro.
-○ Eliminar un libro.
-Frontend:
-1. Mostrar del modo más visual posible una parrilla de libros.
-2. Al pulsar sobre uno de los libros, se mostrará de forma dinámica más información sobre él.
-3. Formulario para insertar un libro.
-4. Eliminar un libro. Al completarse la acción, la parrilla se actualiza de forma lo más transparente posible al usuario.
-Todas estas acciones se realicen con la idea de Single Page Application.
+# 📚 Bookstore App
+
+Este proyecto es una aplicación web para la gestión de libros, desarrollada con **Symfony, MySQL y ReactJS**.
+
+## 🚀 Tecnologías utilizadas
+- **Backend:** PHP, Symfony, MySQL  
+- **Frontend:** ReactJS (Single Page Application - SPA)  
+
+---
+
+## 🛠️ Funcionalidades
+
+### 🔷 Backend (Symfony + MySQL)
+1. **Importador de libros:**
+   - Lee el fichero `books.json` y almacena su información en la base de datos.
+
+2. **Gestión de imágenes:**
+   - Cada libro puede tener de 0 a X imágenes asociadas.
+
+3. **Webservices REST que devuelven información en JSON:**
+   - 📚 Obtener todos los libros.
+   - 📅 Obtener libros publicados antes del año **X**.
+   - 🎭 Obtener libros de la categoría **X**.
+   - 🔍 Obtener información de un libro concreto por **ISBN**, incluyendo sus imágenes.
+
+4. **Servicios web para manipulación de datos:**
+   - ➕ Añadir un libro.
+   - ❌ Eliminar un libro.
+
+---
+
+### 🔷 Frontend (ReactJS)
+1. 📖 **Mostrar una parrilla visual de libros**.
+2. 🔍 **Al hacer clic en un libro, mostrar más detalles dinámicamente**.
+3. 📝 **Formulario para insertar un libro**.
+4. 🗑️ **Eliminar un libro y actualizar la vista automáticamente**.
+
+---
+
+## ⚡ Arquitectura
+El proyecto sigue el principio de **Single Page Application (SPA)** para mejorar la experiencia de usuario.
+
+- 🔹 **Frontend (ReactJS)** → Consume los servicios del backend mediante API REST.
+- 🔹 **Backend (Symfony)** → Proporciona endpoints RESTful y gestiona la base de datos con MySQL.
+
+---
+
+## 🚀 Cómo ejecutar el proyecto
+
+### 🔹 Clonar el repositorio
+```bash
+git clone https://github.com/usuario/bookstore-app.git
+cd bookstore-appp
