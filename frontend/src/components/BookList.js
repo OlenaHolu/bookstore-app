@@ -44,21 +44,22 @@ const BookList = () => {
             switch (searchType) {
                 case "year":
                     response = await getBooksPublishedBefore(searchValue);
+                    setBooks(response.data);
                     break;
                 case "category":
                     response = await getBooksByCategory(searchValue);
+                    setBooks(response.data);
                     break;
                 case "isbn":
                     response = await getBookByIsbn(searchValue);
+                    setBooks(response.data ? [response.data] : []);
                     break;
                 default:
                     return;
             }
-            if (response.data.length === 0) {
-                setBooks([]);
+            if (books.length === 0) {
                 setErrorMessage(`No se encontraron resultados para ${searchType}: ${searchValue}.`);
             } else {
-                setBooks(response.data);
                 setErrorMessage("");
             }
             setIsFilterApplied(true);
