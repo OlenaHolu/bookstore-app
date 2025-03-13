@@ -2,12 +2,40 @@ import axios from "axios";
 
 const WS_URL = "http://127.0.0.1:8000/ws";
 
-export const getAllBooks = () => axios.get(`${WS_URL}/books`);
-export const getBooksPublishedBefore = (year) => axios.get(`${WS_URL}/books/published-before/${year}`);
-export const getBooksByCategory = (category) => axios.get(`${WS_URL}/books/category/${category}`);
-export const getBookByIsbn = (isbn) => axios.get(`${WS_URL}/books/isbn/${isbn}`);
+const api = axios.create({
+    baseURL: WS_URL,
+});
 
-export const addBook = (book) => axios.post(`${WS_URL}/books/add`, book);
-export const importBooks = (books) => axios.post(`${WS_URL}/books/import-books`, books);
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+}, (error) => Promise.reject(error));
 
-export const deleteBook = (isbn) => axios.delete(`${WS_URL}/books/${isbn}/delete`);
+
+export const getAllBooks = () => api.get("/books");
+
+export const getBooksPublishedBefore = (year) => api.get(`/books/published-before/${year}`);
+
+export const getBooksByCategory = (category) => api.get(`/books/category/${category}`);
+
+export const getBookByIsbn = (isbn) => api.get(`/books/isbn/${isbn}`);
+
+export const addBook = (book) => api.post("/books/add", book);
+
+export const importBooks = (books) => api.post("/books/import-books", books);
+
+export const deleteBook = (isbn) => api.delete(`/books/${isbn}/delete`);
+
+export const register = (email, password) => api.post("/register", { email, password });
+
+export const login = async (email, password) => {
+    const response = await api.post("/login", { email, password });
+    return response.data;
+};
+
+export const logout = () => {
+    localStorage.removeItem("token");
+};

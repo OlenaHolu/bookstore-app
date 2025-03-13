@@ -1,0 +1,39 @@
+security:
+    password_hashers:
+        App\Entity\User:
+            algorithm: auto
+
+    providers:
+        users_in_database:
+            entity:
+                class: App\Entity\User
+                property: email
+       
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+            
+        login:
+            pattern: ^/ws/login
+            stateless: true
+            json_login:
+                check_path: /ws/login
+                username_path: email
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        register:
+            pattern: ^/ws/register
+            stateless: true
+            security: false
+            
+        api:
+            pattern: ^/ws
+            stateless: true
+            jwt: ~
+       
+    access_control:
+        - { path: ^/ws/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/ws/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/ws, roles: IS_AUTHENTICATED_FULLY }
