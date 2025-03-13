@@ -33,7 +33,7 @@ final class BookController extends AbstractController
         ]);
     }
 
-    #[Route('/ws/import-books', name: 'import_books', methods: ['POST'])]
+    #[Route('/ws/books/import-books', name: 'import_books', methods: ['POST'])]
     public function importBooks(Request $request): JsonResponse
     {
         $file = $request->files->get('file');
@@ -58,7 +58,7 @@ final class BookController extends AbstractController
                 $book = $this->bookRepository->createBookFromData($bookData);
                 $books[] = $book;
             }
-            $this->bookRepository->addBooks($books);
+            $this->bookRepository->saveBooks($books);
             return $this->json(['message' => 'Books imported successfully'], Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return $this->json(['error' => 'Error importing books: ' . $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);

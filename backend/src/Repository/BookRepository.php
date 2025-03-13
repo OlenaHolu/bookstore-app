@@ -63,7 +63,7 @@ class BookRepository extends ServiceEntityRepository
         $this->getEntityManager()->flush();
     }
 
-    public function addBooks(array $books): void
+    public function saveBooks(array $books): void
     {
         foreach ($books as $book) {
 

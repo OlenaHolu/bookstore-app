@@ -46,7 +46,7 @@ const AddBookForm = ({ onBookAdded }) => {
     };
 
     return (
-        <form className="flex flex-col space-y-2 p-4 bg-gray-50 shadow-md rounded-lg" onSubmit={handleSubmit}>
+        <form className="flex flex-col space-y-2 p-4 bg-gray-50 shadow-md rounded-lg border border-solid border-gray-400" onSubmit={handleSubmit}>
             {errorMessage && (
                 <div className="text-red-500 text-sm mb-2">
                     {errorMessage}
