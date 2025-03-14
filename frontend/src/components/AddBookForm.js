@@ -55,6 +55,7 @@ const AddBookForm = ({ onBookAdded }) => {
             <FormInput
                 label="ISBN"
                 name="isbn"
+                type="number"
                 value={book.isbn}
                 onChange={handleChange}
                 required
@@ -100,19 +101,13 @@ const AddBookForm = ({ onBookAdded }) => {
             <FormInput
                 label="Páginas"
                 name="pages"
+                type="number"
                 value={book.pages}
                 onChange={handleChange}
                 required
                 pattern="\d{1,6}"
                 inputMode="numeric"
                 title="El número de páginas debe ser un valor numérico, max 6 digitos"
-            />
-            <FormInput
-                label="Descripción"
-                name="description"
-                value={book.description}
-                onChange={handleChange}
-                required
             />
             <FormInput
                 label="Sitio web"
@@ -129,6 +124,14 @@ const AddBookForm = ({ onBookAdded }) => {
             <ImageInput 
                 images={book.images} 
                 setImages={(images) => setBook({ ...book, images })} 
+            />
+            <textarea
+                placeholder="Descripción"
+                name="description"
+                value={book.description}
+                onChange={handleChange}
+                required
+                className="border p-2 rounded w-full mb-4 h-24 resize-none"
             />
             <Button 
                 text="Añadir" 
