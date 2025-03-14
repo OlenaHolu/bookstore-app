@@ -25,7 +25,7 @@ const Layout = ({ children }) => {
     return (
         <div className="min-h-screen flex flex-col">
             <header className="bg-blue-600 text-white p-4 shadow-md flex justify-between items-center">
-                <h1 className="text-3xl font-bold">Libreria</h1>
+                <Link to="/" className="text-3xl font-bold">Libreria</Link>
                 <button
                     className="text-white text-3xl md:hidden"
                     onClick={() => setMenuOpen(!menuOpen)}

@@ -4,6 +4,7 @@ import AddBookForm from "../components/AddBookForm";
 import ImportBooks from "../components/ImportBooks";
 import Layout from "../components/Layout";
 import { Link } from "react-router-dom";
+import Button from "../components/Button";
 
 const Home = () => {
     const [refresh, setRefresh] = useState(false);
@@ -38,9 +39,7 @@ const Home = () => {
                             Para acceder a nuestra colección de libros, por favor inicia sesión o regístrate.
                         </p>
                         <Link to="/login">
-                            <button className="bg-blue-500 text-white px-4 py-2 rounded">
-                                🔑 Iniciar Sesión
-                            </button>
+                            <Button text = "🔑 Iniciar Sesión" />
                         </Link>
                         <p className="mt-4">
                             ¿No tienes cuenta?{" "}

@@ -132,7 +132,7 @@ const AddBookForm = ({ onBookAdded }) => {
             />
             <Button 
                 text="Añadir" 
-                color="green" 
+                color="rgb(44, 139, 56)" 
                 disabled={!isFormValid()} 
             />
         </form>

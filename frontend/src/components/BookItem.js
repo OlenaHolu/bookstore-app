@@ -19,7 +19,7 @@ const BookItem = ({ book, onDelete }) => (
         </div>
         <Button 
             text="Eliminar" 
-            color="red" 
+            color="rgb(248, 59, 59)" 
             onClick={() => onDelete(book.isbn)} 
         />
     </li>

@@ -48,6 +48,7 @@ const ImportBooks = ({ onImport }) => {
                 <Button
                      onClick={handleUpload} 
                      text="Subir archivo JSON"
+                     color="rgb(44, 139, 56)"
                 />
             )}
 

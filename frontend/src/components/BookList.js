@@ -102,7 +102,6 @@ const BookList = () => {
                 />
                 <Button 
                     text="Buscar" 
-                    color="blue" 
                     onClick={handleSearch}
                 />
             </div>
@@ -110,7 +109,7 @@ const BookList = () => {
                 <div className="mb-4 flex items-center">
                      <Button 
                         text="Eliminar filtro" 
-                        color="red" 
+                        color="rgb(248, 59, 59)" 
                         onClick={clearFilter}
                     />
                 </div>

@@ -3,7 +3,7 @@ import { login } from "../api";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ onLogin }) => {
+const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -15,9 +15,12 @@ const Login = ({ onLogin }) => {
 
         try {
             const response = await login(email, password);
+            console.log("Server response: ", response);
+
             const token = response.data.token;
+            console.log("const token = ", token);
+
             localStorage.setItem("token", token);
-            onLogin && onLogin();
             navigate("/");
         } catch (error) {
             setError("Credentials are incorrect or there was a server error");

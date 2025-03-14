@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ onClick, text, color = "blue", disabled = false }) => {
+const Button = ({ onClick, text, color = "rgb(58, 119, 250)", disabled = false }) => {
     return (
         <button
             onClick={onClick}

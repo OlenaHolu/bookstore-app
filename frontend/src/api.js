@@ -31,11 +31,10 @@ export const deleteBook = (isbn) => api.delete(`/books/${isbn}/delete`);
 
 export const register = (email, password) => api.post("/register", { email, password });
 
-export const login = async (email, password) => {
-    const response = await api.post("/login", { email, password });
-    return response.data;
-};
+export const login = (email, password) => api.post("/login", { email, password });
 
+export const getUserInfo = (email, password) => api.get("/me");
+ 
 export const logout = () => {
     localStorage.removeItem("token");
 };
